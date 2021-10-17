@@ -15,25 +15,23 @@ class Items(Controller):
     @ex(help="list items")
     def list(self):
         output = es.get(index="test-my-index", doc_type="my-test-type", id=1)
-        print(output["_source"]["author"])
+        print(output["_source"])
 
     @ex(help="create new item")
     def create(self):
+        from .services import addIndex
 
-        # from services import addIndex
-        # query = addIndex()
-        query = {
-            "author": "kai",
-            "text": "Interesting content.",
-            "timestamp": datetime.now(),
-        }
+        query = addIndex()
         es.index(index="test-my-index", doc_type="my-test-type", id=1, document=query)
         print("Index is created.")
 
     @ex(help="update an existing item")
     def update(self):
-        print("I am from update")
-        pass
+        from .services import updateIndex
+
+        query = updateIndex()
+        es.update(index="test-my-index", doc_type="my-test-type", id=1, document=query)
+        print("Index is updated")
 
     @ex(help="delete an item")
     def delete(self):
