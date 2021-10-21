@@ -1,69 +1,21 @@
-# MyApp Does Amazing Things!
-
-## Installation
+# Creating Index
 
 ```
-$ pip install -r requirements.txt
-
-$ pip install setup.py
+index(index="test-my-index", doc_type="my-test-type", id=1, document=query)
 ```
 
-## Development
-
-This project includes a number of helpers in the `Makefile` to streamline common development tasks.
-
-### Environment Setup
-
-The following demonstrates setting up and working with a development environment:
+# Data in index
 
 ```
-### create a virtualenv for development
-
-$ make virtualenv
-
-$ source env/bin/activate
-
-
-### run myapp cli application
-
-$ myapp --help
-
-
-### run pytest / coverage
-
-$ make test
-```
-
-
-### Releasing to PyPi
-
-Before releasing to PyPi, you must configure your login credentials:
-
-**~/.pypirc**:
-
-```
-[pypi]
-username = YOUR_USERNAME
-password = YOUR_PASSWORD
-```
-
-Then use the included helper function via the `Makefile`:
-
-```
-$ make dist
-
-$ make dist-upload
-```
-
-## Deployments
-
-### Docker
-
-Included is a basic `Dockerfile` for building and distributing `My Application`,
-and can be built with the included `make` helper:
-
-```
-$ make docker
-
-$ docker run -it myapp --help
+{
+    "_index" : "test-my-index",
+    "_type" : "my-test-type",
+    "_id" : "1",
+    "_score" : 1.0,
+    "_source" : {
+        "author" : "kai",
+        "text" : "Interesting content.",
+        "timestamp" : "2021-10-17T01:51:46.487372"
+    }
+}
 ```
